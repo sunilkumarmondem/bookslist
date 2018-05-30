@@ -1,17 +1,10 @@
 var myapp = angular.module("mymodule",[]);
 
 myapp.controller("firstcontrol",function($scope){
-  $scope.message="hello";
+
   $scope.ebk = false;
   $scope.pback = false;
-
-/*$scope.color = {
-      red: Math.floor(Math.random() * 255),
-      green: Math.floor(Math.random() * 255),
-      blue: Math.floor(Math.random() * 255)
-    };*/
-
-  $scope.selectedRang = 0;  
+$scope.selectedRang = 0;  
   $scope.maxPrice = 40;
   $scope.selectPrice = false;
 
@@ -31,12 +24,8 @@ myapp.controller("firstcontrol",function($scope){
     if($scope.selectedprice){}
       $scope.selectPrice = true;
       loadData1();
-
-  
-  }
-
-
-  $scope.ebookfilter=function(){
+}
+ $scope.ebookfilter=function(){
       if($scope.ebk)
       {
         $scope.ebk = false;
@@ -59,48 +48,30 @@ myapp.controller("firstcontrol",function($scope){
    }
 
    loadData();
-
-  }
-
-
-  function loadData()
+ }
+function loadData()
   {
-
-  list = [];
-
-    if($scope.ebk == true  && $scope.pback == true  )
+list = [];
+ if($scope.ebk == true  && $scope.pback == true  )
     {
-
-      console.log("BOTH true");
-      
-      books.forEach(function(book){
+  console.log("BOTH true");
+     books.forEach(function(book){
       if((book.type == 'ebook' || book.type == 'Paperback') )
          list.push(book);
-       
-      })
-
-      console.log("List " + list);
+        })
+ console.log("List " + list);
       $scope.books = list;
-
     }
-       
-
-    else if( $scope.ebk ==true )
+       else if( $scope.ebk ==true )
     {
        console.log("EBBOK true");
-      
       books.forEach(function(book){
         if(book.type == 'ebook' )
          list.push(book);
-       
-      }) 
-      
-
+       }) 
       $scope.books = list;
-
     }
-    
-    else if($scope.pback==true)
+  else if($scope.pback==true)
     {
        console.log("PBACK true");
       
@@ -126,37 +97,22 @@ myapp.controller("firstcontrol",function($scope){
     }
 
     $scope.selectPrice = false;
-
-  
-
-
-  }
-
-
- function loadData1()
+}
+function loadData1()
   {
 
   list = [];
-
-    
-        if($scope.ebk == true && $scope.pback == true && $scope.selectPrice==true )
+ if($scope.ebk == true && $scope.pback == true && $scope.selectPrice==true )
     {
-
-      console.log("BOTH true");
-      
-      books.forEach(function(book){
+console.log("BOTH true");
+    books.forEach(function(book){
       if((book.type == 'ebook' || book.type == 'Paperback') && book.price <= $scope.selectedRang)
          list.push(book);
-      
       })
-
-      console.log("List " + list);
+    console.log("List " + list);
       $scope.books = list;
-
-    }
-
-    
-    else if( $scope.ebk ==true && $scope.selectPrice == true  )
+      }
+  else if( $scope.ebk ==true && $scope.selectPrice == true  )
     {
        console.log("EBBOK true");
       
@@ -165,10 +121,8 @@ myapp.controller("firstcontrol",function($scope){
          list.push(book);
        
       }) 
-      
-
+     
       $scope.books = list;
-
     }
     
      else if($scope.pback==true && $scope.selectPrice==true )
@@ -198,17 +152,5 @@ myapp.controller("firstcontrol",function($scope){
 
     $scope.selectPrice = false;
 
-  
-
-
   }
- 
-
-
-    
-
-    
-
-     
-
 });
