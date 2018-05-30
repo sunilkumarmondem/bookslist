@@ -1,0 +1,80 @@
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="https://rawgit.com/rzajac/angularjs-slider/master/dist/rzslider.js"></script>
+  <script  src="book.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<div ng-app="mymodule" ng-controller="firstcontrol" >
+<div class="container" >
+  <div class="row">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-3">
+      <div>
+        <h3>Format</h3>
+          <input type="checkbox" value="ebook" ng-click="ebookfilter()" >ebook
+          <input type="checkbox" value="Paperback" ng-click="paperfilter()">Paperback
+
+      </div>
+      <div>
+        <h3>Price</h3>
+              <div class="progress-box" ng-app>
+          <div class="percentage-cur" >
+            <span class="num">{{ selectedRang }} $</span>
+          </div>
+          <div class="progress-bar progress-bar-slider">
+            <input class="progress-slider" type="range" min="0" max="100" ng-click="rangePrice()" ng-model="selectedRang">
+            <div class="inner" ng-style="{ width: selectedRang + '%' || '0%' }"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-6">
+       <h2>Book List</h2>
+  <div>
+    sort By: <select ng-model="sortcolumn">
+
+      <option value="book">Book</option>
+      <option value="author">Author</option>
+    </select>
+  </div><br><br>
+  <div>
+    Search : <input type="text" placeholder="Search" ng-model="searchtxt">
+  </div><br>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>BookName</th>
+        <th>Author</th>
+        <th>Price</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="book in books | orderBy:sortcolumn |filter:searchtxt " >
+        <td><b>{{book.book}}</b></td>
+        <td>{{book.author}}</td>
+        <td><h5>{{book.price | currency}}</h5></td>
+        <td><h5>{{book.type}}</h5></td>
+      </tr>
+     
+      
+    </tbody>
+  </table>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>
